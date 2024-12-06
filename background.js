@@ -21,7 +21,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           "Authorization": `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: "gpt-4o-mini",
+          model: "gpt-4o",
           messages: [{ role: "user", content: `Dịch sang tiếng Việt (chỉ trả lời bằng bản dịch, không được đưa thêm bất cứ văn bản nào khác): ${selectedText}` }]
         })
       })
@@ -53,7 +53,7 @@ function showTooltip(tabId, translation) {
           border-radius: 5px;
           z-index: 10000;
           box-shadow: 0 0 10px rgba(0,0,0,0.5);
-          max-width: 80vw;
+          max-width: 800px;
           margin-top: 10px;
           white-space: pre-wrap;
         }
