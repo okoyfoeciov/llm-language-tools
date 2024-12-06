@@ -21,7 +21,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           "Authorization": `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: "gpt-4o",
+          model: "gpt-4o-mini",
           messages: [{ role: "user", content: `Dịch sang tiếng Việt (chỉ trả lời bằng bản dịch, không được đưa thêm bất cứ văn bản nào khác): ${selectedText}` }]
         })
       })
