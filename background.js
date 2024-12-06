@@ -53,7 +53,7 @@ function showTooltip(tabId, translation) {
           border-radius: 5px;
           z-index: 10000;
           box-shadow: 0 0 10px rgba(0,0,0,0.5);
-          max-width: 800px;
+          max-width: 80vw;
           margin-top: 10px;
           white-space: pre-wrap;
         }
