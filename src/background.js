@@ -70,18 +70,17 @@ function showTooltip(tabId, translation, index) {
       style.textContent = `
         .translation-tooltip {
           position: absolute;
-          background-color: black;
-          color: white;
-          padding: 5px 10px;
-          border-radius: 5px;
+          background-color: #2F2F2F;
+          color: #ececec;
+          padding: 0px 0px;
+          border-radius: 0px;
           z-index: 10000;
-          box-shadow: 0 0 10px rgba(0,0,0,0.5);
           min-height: 100px;
           font-family: Noto Sans, sans-serif, Arial, sans-serif, Helvetica, sans-serif;
           width: ${computedStyle.width};
           font-size: ${computedStyle.fontSize};
           line-height: ${computedStyle.lineHeight};
-          margin-top: 10px;
+          margin-top: 0px;
           white-space: pre-wrap;
         }
       `;
