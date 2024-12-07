@@ -12,15 +12,24 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
+// chrome.runtime.onInstalled.addListener(() => {
+//   chrome.contextMenus.create({
+//     id: "[slow]llmVietnameseTranslator",
+//     title: "Dịch (chậm)",
+//     contexts: ["selection"]
+//   });
+// });
+
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  if (info.menuItemId === "llmVietnameseTranslator") {
+  if (info.menuItemId === "llmVietnameseTranslator" || info.menuItemId === "[slow]llmVietnameseTranslator") {
     const selectedText = info.selectionText;
+    const model = info.menuItemId === "llmVietnameseTranslator" ? "gpt-4o-mini": "gpt-4o"
 
     if (selectedText) {
-      const message = `Dịch sang tiếng Việt (chỉ trả lời bằng bản dịch, không được đưa thêm bất cứ văn bản nào khác): ` + selectedText;
+      const message = `Dịch sang tiếng Việt (chỉ trả lời bằng bản dịch, không đưa thêm bất cứ văn bản nào khác; hãy dịch tự nhiên và thoát nghĩa): ` + selectedText;
       const stream = await client.chat.completions.create({
         messages: [{ role: 'user', content: message }],
-        model: 'gpt-4o-mini',
+        model: model,
         stream: true,
       });
 
@@ -46,7 +55,6 @@ function showTooltip(tabId, translation, index) {
         return 
       }
 
-      // Tạo style cho tooltip
       const style = document.createElement('style');
       style.textContent = `
         .translation-tooltip {
@@ -59,13 +67,14 @@ function showTooltip(tabId, translation, index) {
           box-shadow: 0 0 10px rgba(0,0,0,0.5);
           width: 80vw;
           min-height: 100px;
+          font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+          font-size: 12px;
           margin-top: 10px;
           white-space: pre-wrap;
         }
       `;
       document.head.appendChild(style);
 
-      // Tạo tooltip
       const tooltip = document.createElement('div');
       tooltip.id = 'llmVietnameseTranslatorTooltip';
       tooltip.className = 'translation-tooltip';
@@ -73,7 +82,6 @@ function showTooltip(tabId, translation, index) {
 
       document.body.appendChild(tooltip);
 
-      // Đặt tooltip tại vị trí gần văn bản đã chọn
       const selection = window.getSelection();
       const range = selection.getRangeAt(0);
       const rect = range.getBoundingClientRect();
@@ -81,7 +89,6 @@ function showTooltip(tabId, translation, index) {
       tooltip.style.top = `${window.scrollY + rect.bottom}px`;
       tooltip.style.left = `${window.scrollX + rect.left}px`;
 
-      // Thêm sự kiện cho việc click ra ngoài để xóa tooltip
       const handleClickOutside = (event) => {
         if (!tooltip.contains(event.target)) {
           tooltip.remove();

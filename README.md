@@ -4,7 +4,10 @@
 ```
 npm install webpack webpack-cli --save-dev
 ```
-### 3. Build 
+
+### 3. Include you OpenAI API Key in *`src/background.js`* file
+
+### 4. Install & Build 
 ```
-npm run build
+npm install && npm run build
 ```
