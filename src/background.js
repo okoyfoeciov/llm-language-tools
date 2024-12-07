@@ -55,6 +55,17 @@ function showTooltip(tabId, translation, index) {
         return 
       }
 
+      const selection = window.getSelection();
+      const range = selection.getRangeAt(0);
+      const rect = range.getBoundingClientRect();
+
+      let container = range.commonAncestorContainer;
+      if (container.nodeType === Node.TEXT_NODE) {
+        container = container.parentElement;
+      }
+
+      const computedStyle = window.getComputedStyle(container)
+
       const style = document.createElement('style');
       style.textContent = `
         .translation-tooltip {
@@ -65,10 +76,11 @@ function showTooltip(tabId, translation, index) {
           border-radius: 5px;
           z-index: 10000;
           box-shadow: 0 0 10px rgba(0,0,0,0.5);
-          width: 80vw;
           min-height: 100px;
-          font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-          font-size: 12px;
+          font-family: Noto Sans, sans-serif, Arial, sans-serif, Helvetica, sans-serif;
+          width: ${computedStyle.width};
+          font-size: ${computedStyle.fontSize};
+          line-height: ${computedStyle.lineHeight};
           margin-top: 10px;
           white-space: pre-wrap;
         }
@@ -81,10 +93,6 @@ function showTooltip(tabId, translation, index) {
       tooltip.textContent = translation;
 
       document.body.appendChild(tooltip);
-
-      const selection = window.getSelection();
-      const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
 
       tooltip.style.top = `${window.scrollY + rect.bottom}px`;
       tooltip.style.left = `${window.scrollX + rect.left}px`;
