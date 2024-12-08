@@ -11,3 +11,5 @@ npm install webpack webpack-cli --save-dev
 ```
 npm install && npm run build
 ```
+
+### 5. Load the extension into your browser
