@@ -70,7 +70,7 @@ function showTooltip(tabId, translation, index) {
       style.textContent = `
         .translation-tooltip {
           position: absolute;
-          background-color: #2F2F2F;
+          background-color: #212121;
           color: #ececec;
           padding: 0px 0px;
           border-radius: 0px;
