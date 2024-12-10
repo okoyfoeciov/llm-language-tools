@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 
 const client = new OpenAI({
-  apiKey: "", // YOUR OPENAI API KEY
+  apiKey: "YOUR_API_KEY", 
 });
 
 chrome.runtime.onInstalled.addListener(() => {
