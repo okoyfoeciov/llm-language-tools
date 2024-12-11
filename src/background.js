@@ -75,12 +75,11 @@ function showTooltip(tabId, translation, index) {
           padding: 0px 0px;
           border-radius: 0px;
           z-index: 10000;
-          min-height: 100px;
           font-family: Noto Sans, sans-serif, Arial, sans-serif, Helvetica, sans-serif;
           width: ${computedStyle.width};
           font-size: ${computedStyle.fontSize};
           line-height: ${computedStyle.lineHeight};
-          margin-top: 0px;
+          margin: 0px;
           white-space: pre-wrap;
         }
       `;
