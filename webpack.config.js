@@ -1,10 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/background.js',
-  output: {
-    filename: 'background.bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+  entry: {
+    gpt4o: './src/gpt4o.js',
+    gpt4omini: './src/gpt4omini.js', 
   },
-  mode: 'production', // or 'development'
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'src'),
+  },
+  mode: 'production',
 };
