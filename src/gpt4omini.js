@@ -40,7 +40,7 @@ function showTooltip(translation, index) {
     const range = selection.getRangeAt(0);
     const rect = range.getBoundingClientRect();
 
-    let container = range.commonAncestorContainer;
+    let container = range.startContainer;
     if (container.nodeType === Node.TEXT_NODE) {
         container = container.parentElement;
     }
