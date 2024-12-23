@@ -58,6 +58,8 @@ function showTooltip(translation, index) {
             z-index: 10000;
             font-family: Noto Sans, sans-serif, Arial, sans-serif, Helvetica, sans-serif;
             width: ${rect.width};
+            top: ${window.scrollY + rect.bottom}px;
+            left: ${window.scrollX + rect.left}px;
             font-size: ${computedStyle.fontSize};
             line-height: ${computedStyle.lineHeight};
             margin: 0px;
@@ -72,10 +74,7 @@ function showTooltip(translation, index) {
     tooltip.innerHTML = translation;
 
     document.body.appendChild(tooltip);
-
-    tooltip.style.top = `${window.scrollY + rect.bottom}px`;
-    tooltip.style.left = `${window.scrollX + rect.left}px`;
-
+    
     const handleClickOutside = (event) => {
         if (!tooltip.contains(event.target)) {
             tooltip.remove();
