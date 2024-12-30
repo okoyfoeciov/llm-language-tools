@@ -57,7 +57,7 @@ function showTooltip(translation, index) {
             border-radius: 0px;
             z-index: 10000;
             font-family: Noto Sans, sans-serif, Arial, sans-serif, Helvetica, sans-serif;
-            width: ${rect.width};
+            width: ${rect.width}px;
             top: ${window.scrollY + rect.bottom}px;
             left: ${window.scrollX + rect.left}px;
             font-size: ${computedStyle.fontSize};
