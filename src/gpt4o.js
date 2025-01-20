@@ -56,12 +56,13 @@ function showTooltip(translation, index) {
             padding: 0px 0px;
             border-radius: 0px;
             z-index: 10000;
-            font-family: Noto Sans, sans-serif, Arial, sans-serif, Helvetica, sans-serif;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             width: ${rect.width}px;
             top: ${window.scrollY + rect.bottom}px;
             left: ${window.scrollX + rect.left}px;
             font-size: ${computedStyle.fontSize};
             line-height: ${computedStyle.lineHeight};
+            text-align: left;
             margin: 0px;
             white-space: pre-wrap;
           }
