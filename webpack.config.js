@@ -2,8 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    gpt4o: './src/gpt4o.js',
-    gpt4omini: './src/gpt4omini.js', 
+    main: './src/main.js', 
   },
   output: {
     filename: '[name].bundle.js',
