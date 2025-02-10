@@ -5,7 +5,7 @@
 npm install webpack webpack-cli --save-dev
 ```
 
-### 3. Include your OpenAI API Key in *`src/gpt4o.js`* and *`src/gpt4omini.js`* file
+### 3. Include your OpenAI API Key in *`src/main.js`* file
 
 ### 4. Install & Build 
 ```
