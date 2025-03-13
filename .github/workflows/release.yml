@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # You can change to windows-latest if needed, but the copy commands differ.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build
+      - name: Create Build Directory
+        run: mkdir dist
+      - name: Copy Files
+        run: |
+          cp manifest.json dist/
+          cp background.js dist/
+          cp src/main.bundle.js dist/
+      - name: Zip Build
+        run: zip -r release.zip dist/
+      - name: Create or Update Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Build
+          files: release.zip
