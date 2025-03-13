@@ -1,15 +1,3 @@
-### 1. You must have Node.js installed.
+### Run `npm install && npm run build` (remember fill in your `OPENAI_API_KEY`, then load the extension into your browser
 
-### 2. Install webpack 
-```
-npm install webpack webpack-cli --save-dev
-```
-
-### 3. Include your OpenAI API Key in *`src/main.js`* file
-
-### 4. Install & Build 
-```
-npm install && npm run build
-```
-
-### 5. Load the extension into your browser
+## Or you could use the built release I provide (again, find and fill in your `OPENAI_API_KEY`)
