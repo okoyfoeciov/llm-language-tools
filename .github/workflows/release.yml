@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # You can change to windows-latest if needed, but the copy commands differ.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build
+      - name: Create Build Directory
+        run: mkdir dist dist/src
+      - name: Copy Files
+        run: |
+          cp manifest.json dist/
+          cp background.js dist/
+          cp src/*.bundle.js dist/src/
+      - name: Zip Build
+        run: cd dist && zip -r ../llm-language-tools.zip . && cd ..
+      - name: Create or Update Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Build
+          files: llm-language-tools.zip

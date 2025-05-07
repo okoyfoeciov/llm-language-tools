@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "LLM Language Tools",
+  "version": "1.0",
+  "permissions": [
+    "contextMenus",
+    "scripting",
+    "activeTab",
+    "windows"
+  ],
+  "background": {
+    "service_worker": "./background.js"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "commands": {
+    "dich": {
+      "suggested_key": {
+        "default": "Alt+Shift+D"
+      },
+      "description": "Dịch văn bản sang tiếng Việt"
+    },
+    "paraphrase": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Paraphrase a text"
+    },
+    "showPronunciation": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "Show pronunciation for the selected word (or open a pronunciation site if nothing is selected)"
+    }
+  }
+}
