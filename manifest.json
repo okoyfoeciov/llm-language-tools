@@ -32,6 +32,12 @@
         "default": "Alt+S"
       },
       "description": "Show pronunciation for the selected word (or open a pronunciation site if nothing is selected)"
+    },
+    "explainMeaning": {
+      "suggested_key": {
+        "default": "Alt+Shift+G"
+      },
+      "description": "Explain meaning of a word or a phrase (or jargon) in a context"
     }
   }
 }

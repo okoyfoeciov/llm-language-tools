@@ -12,6 +12,8 @@ chrome.commands.onCommand.addListener(async (command) => {
                 injectImmediately: true,
             }
         );
+
+        return;
     }
     if (command === "paraphrase") {
         const [tab] = await chrome.tabs.query({
@@ -26,6 +28,23 @@ chrome.commands.onCommand.addListener(async (command) => {
                 injectImmediately: true,
             }
         );
+        return;
+    }
+
+    if (command === "explainMeaning") {
+        const [tab] = await chrome.tabs.query({
+            active: true,
+            currentWindow: true,
+        });
+
+        chrome.scripting.executeScript(
+            {
+                target: { tabId: tab.id },
+                files: ["./src/explainMeaning.bundle.js"],
+                injectImmediately: true,
+            }
+        );
+        return;
     }
 
     if (command === "showPronunciation") {
