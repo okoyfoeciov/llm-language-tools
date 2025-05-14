@@ -3,8 +3,7 @@ import OpenAI from "openai";
 const client = new OpenAI({
     apiKey:
         "YOUR_API_KEY",
-    dangerouslyAllowBrowser: true,
-    baseURL: "https://api.x.ai/v1",
+    dangerouslyAllowBrowser: true
 });
 
 export async function show(prompt, name, zIndex) {
@@ -16,7 +15,7 @@ export async function show(prompt, name, zIndex) {
         
         const stream = await client.chat.completions.create({
             messages: [{ role: "user", content: message }],
-            model: "grok-3-fast-beta",
+            model: "gpt-4.1-nano",
             stream: true,
         });
 
