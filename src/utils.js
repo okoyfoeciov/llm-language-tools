@@ -3,7 +3,8 @@ import OpenAI from "openai";
 const client = new OpenAI({
     apiKey:
         "YOUR_API_KEY",
-    dangerouslyAllowBrowser: true
+    dangerouslyAllowBrowser: true,
+    baseURL: "https://openrouter.ai/api/v1",
 });
 
 export async function show(prompt, name, zIndex) {
@@ -15,7 +16,7 @@ export async function show(prompt, name, zIndex) {
         
         const stream = await client.chat.completions.create({
             messages: [{ role: "user", content: message }],
-            model: "gpt-4.1-nano",
+            model: "meta-llama/llama-3.3-70b-instruct",
             stream: true,
         });
 
