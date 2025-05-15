@@ -1,11 +1,6 @@
-import OpenAI from "openai";
+import { GoogleGenAI } from "@google/genai";
 
-const client = new OpenAI({
-    apiKey:
-        "YOUR_API_KEY",
-    dangerouslyAllowBrowser: true,
-    baseURL: "https://openrouter.ai/api/v1",
-});
+const ai = new GoogleGenAI({ apiKey: "YOUR_API_KEY" });
 
 export async function show(prompt, name, zIndex) {
     const selectedText = window.getSelection().toString();
@@ -13,16 +8,16 @@ export async function show(prompt, name, zIndex) {
         const message =
             prompt +
             selectedText.replaceAll(/\n\n/g, '\n').replaceAll(/\n/g, '\n\n');
-        
-        const stream = await client.chat.completions.create({
-            messages: [{ role: "user", content: message }],
-            model: "meta-llama/llama-3.3-70b-instruct",
-            stream: true,
+
+        const stream = await ai.models.generateContentStream({
+            model: "gemini-2.0-flash",
+            contents: message,
         });
+
 
         let index = 0;
         for await (const chunk of stream) {
-            showTooltip(chunk.choices[0]?.delta?.content || "", index, name, zIndex);
+            showTooltip(chunk.text || "", index, name, zIndex);
             index++;
         }
     }
