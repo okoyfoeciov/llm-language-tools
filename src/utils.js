@@ -1,6 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: "YOUR_API_KEY" });
+const ai = new GoogleGenAI({
+    apiKey: await (await fetch("http://localhost:52473/google-ai-studio-api-key")).text()
+});
 
 export async function show(prompt, name, zIndex) {
     const selectedText = window.getSelection().toString();
