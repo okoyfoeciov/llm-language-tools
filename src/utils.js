@@ -22,7 +22,7 @@ export async function show(prompt, name, zIndex) {
                 index++;
             }
         } catch (error) {
-            alert(error)
+            alert(error.message)
         }
     }
 }
