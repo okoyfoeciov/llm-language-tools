@@ -1,3 +1,3 @@
-### Run `npm install && npm run build` (remember fill in your Gemini API key by searching for `YOUR_API_KEY`), then load the extension into your browser
+### Run `npm install && npm run build`, then load the extension into your browser
 
-### Or you could use the built release I provide (again, find and fill API key)
+### Note that you'll need a simple `credentials` server in localhost for this extension to run.
