@@ -1,8 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({
-    apiKey: await (await fetch("http://localhost:52473/google-ai-studio-api-key")).text()
-});
 
 export async function show(prompt, name, zIndex) {
     const selectedText = window.getSelection().toString();
@@ -11,19 +8,23 @@ export async function show(prompt, name, zIndex) {
             prompt +
             selectedText.replaceAll(/\n\n/g, '\n').replaceAll(/\n/g, '\n\n');
 
-        const stream = await ai.models.generateContentStream({
-            model: "gemini-2.0-flash",
-            contents: message,
-        });
+        try {
+            const stream = await new GoogleGenAI({
+                apiKey: await (await fetch("http://localhost:52473/google-ai-studio-api-key")).text()
+            }).models.generateContentStream({
+                model: "gemini-2.0-flash",
+                contents: message,
+            });
 
-
-        let index = 0;
-        for await (const chunk of stream) {
-            showTooltip(chunk.text || "", index, name, zIndex);
-            index++;
+            let index = 0;
+            for await (const chunk of stream) {
+                showTooltip(chunk.text || "", index, name, zIndex);
+                index++;
+            }
+        } catch (error) {
+            alert(error)
         }
     }
-
 }
 
 function showTooltip(content, index, name, zIndex) {
