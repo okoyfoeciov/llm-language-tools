@@ -21,12 +21,6 @@
       },
       "description": "Dịch văn bản sang tiếng Việt"
     },
-    "paraphrase": {
-      "suggested_key": {
-        "default": "Alt+Shift+P"
-      },
-      "description": "Paraphrase a text"
-    },
     "showPronunciation": {
       "suggested_key": {
         "default": "Alt+S"

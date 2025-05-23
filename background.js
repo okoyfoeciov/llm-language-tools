@@ -15,21 +15,6 @@ chrome.commands.onCommand.addListener(async (command) => {
 
         return;
     }
-    if (command === "paraphrase") {
-        const [tab] = await chrome.tabs.query({
-            active: true,
-            currentWindow: true,
-        });
-
-        chrome.scripting.executeScript(
-            {
-                target: { tabId: tab.id },
-                files: ["./src/paraphrase.bundle.js"],
-                injectImmediately: true,
-            }
-        );
-        return;
-    }
 
     if (command === "explainMeaning") {
         const [tab] = await chrome.tabs.query({
