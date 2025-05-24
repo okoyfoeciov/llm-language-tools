@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "LLM Language Tools",
+  "name": "Personal Tools",
   "version": "1.0",
   "permissions": [
     "contextMenus",
