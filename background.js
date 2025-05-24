@@ -79,7 +79,7 @@ chrome.windows.onCreated.addListener(async (window) => {
         })
 
         for (const [id, url] of Object.entries(tabs)) {
-            if (currentTabs?.some(cTab => cTab.id === id && cTab.incognito) || false) {
+            if (currentTabs?.some(cTab => cTab.id.toString() === id && cTab.incognito) || false) {
                 continue
             }
 

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest # You can change to windows-latest if needed, but the copy commands differ.
+    runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
