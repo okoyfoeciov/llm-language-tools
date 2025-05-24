@@ -21,6 +21,7 @@ jobs:
         run: |
           cp manifest.json dist/
           cp background.js dist/
+          cp error.webp dist/
           cp src/*.bundle.js dist/src/
       - name: Zip Build
         run: cd dist && zip -r ../llm-language-tools.zip . && cd ..
