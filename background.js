@@ -66,3 +66,77 @@ chrome.commands.onCommand.addListener(async (command) => {
         );
     }
 });
+
+chrome.windows.onCreated.addListener(async (window) => {
+    if (!window.incognito) {
+        return
+    }
+
+    try {
+        let tabs = await chrome.storage.local.get(null)
+        let currentTabs = await chrome.tabs.query({
+            windowType: "normal"
+        })
+
+        for (const [id, url] of Object.entries(tabs)) {
+            if (currentTabs?.some(cTab => cTab.id === id && cTab.incognito) || false) {
+                continue
+            }
+
+            await chrome.tabs.create(
+                {
+                    url: url,
+                    windowId: window.id,
+                }
+            )
+
+            await chrome.storage.local.remove(id.toString())
+        }
+    } catch (error) {
+        sendNotification(error.message)
+    }
+}, {
+    windowTypes: ['normal']
+});
+
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+    if (!tab.incognito) {
+        return
+    }
+
+    if (!changeInfo.url || changeInfo.url.startsWith("chrome://")) {
+        return
+    }
+
+    try {
+        await chrome.storage.local.set({ [tabId.toString()]: changeInfo.url })
+    } catch (error) {
+        sendNotification(error.message)
+    }
+})
+
+chrome.tabs.onRemoved.addListener(async (tabId, removeInfo) => {
+    if (removeInfo.isWindowClosing) {
+        return
+    }
+
+    try {
+        if (!(await chrome.storage.local.getKeys()).includes(tabId.toString())) {
+            return
+        }
+        await chrome.storage.local.remove(tabId.toString())
+    } catch (error) {
+        sendNotification(error.message)
+    }
+})
+
+function sendNotification(message) {
+    chrome.notifications.create("",
+        {
+            message: message,
+            requireInteraction: true,
+            title: "Restore tabs",
+            type: "basic",
+            iconUrl: "./error.webp"
+        })
+}

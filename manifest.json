@@ -6,7 +6,9 @@
     "contextMenus",
     "scripting",
     "activeTab",
-    "windows"
+    "windows",
+    "notifications",
+    "storage"
   ],
   "background": {
     "service_worker": "./background.js"
